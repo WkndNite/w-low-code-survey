@@ -18,6 +18,34 @@ const router = createRouter({
           path: '/select-group',
           name: 'select-group',
           component: () => import('@/views/MaterialView/SelectGroupView.vue'),
+          redirect: '/single-select',
+          children: [
+            {
+              path: '/single-select',
+              name: 'single-select',
+              component: () => import('@/components/Survey/Materials/Select/SingleSelect.vue'),
+            },
+            {
+              path: '/multi-select',
+              name: 'multi-select',
+              component: () => import('@/components/Survey/Materials/Select/MultiSelect.vue'),
+            },
+            {
+              path: '/option-select',
+              name: 'option-select',
+              component: () => import('@/components/Survey/Materials/Select/OptionSelect.vue'),
+            },
+            {
+              path: '/pic-select',
+              name: 'pic-select',
+              component: () => import('@/components/Survey/Materials/Select/PicSelect.vue'),
+            },
+            {
+              path: '/multi-pic-select',
+              name: 'multi-pic-select',
+              component: () => import('@/components/Survey/Materials/Select/MultiPicSelect.vue'),
+            },
+          ],
         },
         {
           path: '/input-group',

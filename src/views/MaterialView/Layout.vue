@@ -5,13 +5,26 @@
       <slot />
     </div>
     <!-- 显示对应的业务组件 -->
-    <div class="center"></div>
+    <div class="center">
+      <RouterView v-slot="{ Component }">
+        <Component
+          :is="Component"
+          :status="store.components[store.currentMateralComponent].status"
+          :serialNum="1"
+        />
+      </RouterView>
+    </div>
     <!-- 编辑面板 -->
     <div class="right"></div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useMaterialStore } from '@/stores/useMaterial';
+import { computed } from 'vue';
+const store = useMaterialStore();
+const currentComponent = computed(() => store.components[store.currentMateralComponent]);
+</script>
 
 <style scoped lang="scss">
 .layout-container {
