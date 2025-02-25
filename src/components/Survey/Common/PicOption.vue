@@ -36,6 +36,7 @@ import { Upload } from '@element-plus/icons-vue';
 import { inject, watch, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import type { UploadProps } from 'element-plus';
+import type { GetLink } from '@/types';
 
 const props = defineProps({
   picTitle: {
@@ -75,7 +76,7 @@ watch(
   },
 );
 
-const getLink = inject('getLink');
+const getLink = inject<GetLink>('getLink');
 
 const successHandle: UploadProps['onSuccess'] = async (response) => {
   if (getLink) {

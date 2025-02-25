@@ -1,7 +1,7 @@
 <template>
   <div>
     <ButtonGroup
-      :title="`${configKey === 'titleSize' ? '标题' : '描述'}尺寸`"
+      title="说明类型"
       :status="status[currentStatus]"
     >
       <el-button-group>
@@ -9,30 +9,17 @@
           :class="{
             select: currentStatus === 0,
           }"
-          @click="changeSize(0)"
+          @click="changeType(0)"
         >
-          <font-awesome-icon
-            icon="font"
-            size="lg"
-          />
+          <font-awesome-icon icon="heading" />
         </el-button>
         <el-button
-          :class="{ select: currentStatus === 1 }"
-          @click="changeSize(1)"
+          :class="{
+            select: currentStatus === 1,
+          }"
+          @click="changeType(1)"
         >
-          <font-awesome-icon
-            icon="font"
-            size="sm"
-          />
-        </el-button>
-        <el-button
-          :class="{ select: currentStatus === 2 }"
-          @click="changeSize(2)"
-        >
-          <font-awesome-icon
-            icon="font"
-            size="xs"
-          />
+          <font-awesome-icon icon="paragraph" />
         </el-button>
       </el-button-group>
     </ButtonGroup>
@@ -45,19 +32,21 @@ import type { UpdateStatus, VueComponentType } from '@/types';
 import { inject } from 'vue';
 
 const props = defineProps<{
-  currentStatus: number;
   status: string[];
+  currentStatus: number;
   isShow: boolean;
   configKey: string;
   editComponent: VueComponentType;
+  id: string;
 }>();
 
 const updateStatus = inject<UpdateStatus>('updateStatus');
-const changeSize = (size: number) => {
+
+const changeType = (type: number) => {
   if (updateStatus) {
-    updateStatus(props.configKey, size);
+    updateStatus(props.configKey, type);
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

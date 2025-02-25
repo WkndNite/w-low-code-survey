@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PicTitleDescStatusArr, VueComponentType } from '@/types';
+import type { PicTitleDescStatusArr, UpdateStatus, VueComponentType } from '@/types';
 import { Plus, Minus } from '@element-plus/icons-vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { ref, inject } from 'vue';
@@ -76,7 +76,7 @@ const props = defineProps<{
 
 const textArr = ref(props.status);
 
-const updateStatus = inject('updateStatus');
+const updateStatus = inject<UpdateStatus>('updateStatus');
 
 const addOptionHandle = () => {
   if (updateStatus) {
@@ -85,7 +85,9 @@ const addOptionHandle = () => {
 };
 
 const removeOption = (index: number) => {
-  updateStatus(props.configKey, index);
+  if (updateStatus) {
+    updateStatus(props.configKey, index);
+  }
 };
 
 const deletePic = (index: number) => {
@@ -96,7 +98,9 @@ const deletePic = (index: number) => {
     type: 'warning',
   })
     .then(() => {
-      updateStatus(props.configKey, { index, link: '' });
+      if (updateStatus) {
+        updateStatus(props.configKey, { index, link: '' });
+      }
     })
     .catch(() => {
       ElMessage.info('已取消删除');

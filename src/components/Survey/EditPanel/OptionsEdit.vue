@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { Plus, Minus } from '@element-plus/icons-vue';
 import { ref, inject } from 'vue';
-import type { VueComponentType } from '@/types';
+import type { UpdateStatus, VueComponentType } from '@/types';
 const props = defineProps<{
   status: Array<string>;
   isShow: boolean;
@@ -41,15 +41,19 @@ const props = defineProps<{
   editComponent: VueComponentType;
   id: string;
 }>();
-const updateStatus = inject('updateStatus');
+const updateStatus = inject<UpdateStatus>('updateStatus');
 const addOptionHandle = () => {
-  updateStatus(props.configKey);
+  if (updateStatus) {
+    updateStatus(props.configKey);
+  }
 };
 
 const textArr = ref(props.status);
 
 const removeOption = (index: number) => {
-  updateStatus(props.configKey, index);
+  if (updateStatus) {
+    updateStatus(props.configKey, index);
+  }
 };
 </script>
 

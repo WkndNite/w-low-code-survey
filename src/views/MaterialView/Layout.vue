@@ -26,13 +26,25 @@ import { useMaterialStore } from '@/stores/useMaterial';
 import { provide, computed } from 'vue';
 import EditPanel from '@/components/Survey/EditPanel/Index.vue';
 import { ElMessage } from 'element-plus';
-import { isPicLink, type PicLink } from '@/types';
+import {
+  isOptionsStatus,
+  isPicLink,
+  isTypeStatus,
+  type MaterialStore,
+  type PicLink,
+} from '@/types';
 
-const store = useMaterialStore();
+const store = useMaterialStore() as unknown as MaterialStore;
 const currentComponent = computed(() => store.components[store.currentMaterialComponent]);
 
 const updateStatus = (configKey: string, payload?: number | string | boolean | object) => {
   switch (configKey) {
+    case 'type': {
+      if (typeof payload === 'number' && isTypeStatus(currentComponent.value.status)) {
+        store.toggleNoteType(currentComponent.value.status, payload);
+      }
+      break;
+    }
     case 'title':
     case 'desc': {
       if (typeof payload !== 'string') {
@@ -44,6 +56,7 @@ const updateStatus = (configKey: string, payload?: number | string | boolean | o
       break;
     }
     case 'options': {
+      if (!isOptionsStatus(currentComponent.value.status)) break;
       if (typeof payload === 'number') {
         const res = store.removeOption(currentComponent.value.status[configKey], payload);
         if (res) {

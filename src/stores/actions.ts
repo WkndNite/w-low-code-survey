@@ -4,6 +4,7 @@ import {
   type OptionsProps,
   type PicLink,
   type TextProps,
+  type TypeStatus,
 } from '@/types';
 export function setTextStatus(textProps: TextProps, text: string) {
   textProps.status = text;
@@ -40,5 +41,22 @@ export function setSize(optionProps: OptionsProps, index: number) {
 export function setPicLinkByIndex(optionProps: OptionsProps, payload: PicLink) {
   if (isPicTitleDescStatusArray(optionProps.status)) {
     optionProps.status[payload.index].value = payload.link;
+  }
+}
+
+export function toggleNoteType(status: TypeStatus, type: number) {
+  if (type !== status.type.currentStatus) {
+    status.type.currentStatus = type;
+    status.title.isShow = !status.title.isShow;
+    status.desc.isShow = !status.desc.isShow;
+    status.position.isShow = !status.position.isShow;
+    status.titleSize.isShow = !status.titleSize.isShow;
+    status.descSize.isShow = !status.descSize.isShow;
+    status.titleWeight.isShow = !status.titleWeight.isShow;
+    status.descWeight.isShow = !status.descWeight.isShow;
+    status.titleItalic.isShow = !status.titleItalic.isShow;
+    status.descItalic.isShow = !status.descItalic.isShow;
+    status.titleColor.isShow = !status.titleColor.isShow;
+    status.descColor.isShow = !status.descColor.isShow;
   }
 }

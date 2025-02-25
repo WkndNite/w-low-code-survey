@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { ref, inject } from 'vue';
-import type { VueComponentType } from '@/types';
+import type { UpdateStatus, VueComponentType } from '@/types';
 
 const props = defineProps<{
   status: string;
@@ -24,10 +24,11 @@ const props = defineProps<{
 }>();
 
 const text = ref(props.status);
+const updateStatus = inject<UpdateStatus>('updateStatus');
 
 const inputHandle = (val: string) => {
-  updateStatus(props.configKey, val);
+  if (updateStatus) {
+    updateStatus(props.configKey, val);
+  }
 };
-
-const updateStatus = inject('updateStatus');
 </script>

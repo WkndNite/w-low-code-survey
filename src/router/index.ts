@@ -62,6 +62,14 @@ const router = createRouter({
           path: '/note-group',
           name: 'note-group',
           component: () => import('@/views/MaterialView/NoteGroupView.vue'),
+          redirect: '/text-note',
+          children: [
+            {
+              path: '/text-note',
+              name: 'text-note',
+              component: () => import('@/components/Survey/Materials/Note/Note.vue'),
+            },
+          ],
         },
         {
           path: '/profile-group',

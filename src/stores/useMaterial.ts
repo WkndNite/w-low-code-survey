@@ -7,6 +7,7 @@ import {
   setPosition,
   setSize,
   setTextStatus,
+  toggleNoteType,
 } from './actions';
 
 export const useMaterialStore = defineStore('materialStore', {
@@ -15,6 +16,7 @@ export const useMaterialStore = defineStore('materialStore', {
     components: {
       'single-select': defaultStatusMap['single-select'](),
       'single-pic-select': defaultStatusMap['single-pic-select'](),
+      'text-note': defaultStatusMap['text-note'](),
     },
   }),
   actions: {
@@ -27,5 +29,6 @@ export const useMaterialStore = defineStore('materialStore', {
     setPosition,
     setSize,
     setPicLinkByIndex,
+    toggleNoteType,
   },
 });

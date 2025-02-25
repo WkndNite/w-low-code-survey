@@ -44,6 +44,18 @@ export interface OptionsStatus extends BaseStatus {
   options: OptionsProps;
 }
 
+export interface TypeStatus extends BaseStatus {
+  type: OptionsProps;
+}
+
+export function isOptionsStatus(status: BaseStatus): status is OptionsStatus {
+  return 'options' in status;
+}
+
+export function isTypeStatus(status: BaseStatus): status is TypeStatus {
+  return 'type' in status;
+}
+
 export function isStringArray(status: OptionsStatusArr): status is string[] {
   return Array.isArray(status) && status.every((item) => typeof item === 'string');
 }
@@ -75,3 +87,10 @@ export type PicLink = {
 export function isPicLink(obj: object): obj is PicLink {
   return 'link' in obj && 'index' in obj;
 }
+
+export type GetLink = (obj: PicLink) => void;
+
+export type UpdateStatus = (
+  configKey: string,
+  payload?: number | string | boolean | PicLink,
+) => void;
