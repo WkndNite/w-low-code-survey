@@ -39,12 +39,12 @@ export default function () {
           {
             picTitle: '选项1',
             picDesc: '选项1描述',
-            value: '默认选项1',
+            value: '',
           },
           {
             picTitle: '选项2',
             picDesc: '选项2描述',
-            value: '默认选项2',
+            value: '',
           },
         ],
         currentStatus: 0,

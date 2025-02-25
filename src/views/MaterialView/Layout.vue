@@ -37,6 +37,7 @@ const updateStatus = (configKey: string, payload?: number | string | boolean | o
     case 'desc': {
       if (typeof payload !== 'string') {
         console.error('Invalid payload type for "title or desc".Expected string!');
+        return;
       } else {
         store.setTextStatus(currentComponent.value.status[configKey], payload);
       }
@@ -60,6 +61,7 @@ const updateStatus = (configKey: string, payload?: number | string | boolean | o
     case 'position': {
       if (typeof payload !== 'number') {
         console.error('Invalid payload type for "position".Expected number!');
+        return;
       } else {
         store.setPosition(currentComponent.value.status[configKey], payload);
       }
@@ -69,6 +71,7 @@ const updateStatus = (configKey: string, payload?: number | string | boolean | o
     case 'descSize': {
       if (typeof payload !== 'number') {
         console.error('Invalid payload type for "titleSize or descSize".Expected number!');
+        return;
       } else {
         store.setSize(currentComponent.value.status[configKey], payload);
       }

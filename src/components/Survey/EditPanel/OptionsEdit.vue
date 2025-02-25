@@ -10,7 +10,7 @@
       />
     </div>
     <div
-      v-for="(item, index) in status"
+      v-for="(item, index) in textArr"
       :key="index"
       class="flex align-items-center"
     >

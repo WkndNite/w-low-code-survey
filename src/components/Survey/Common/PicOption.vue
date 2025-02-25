@@ -11,9 +11,9 @@
           :before-upload="beforeUploadHandle"
         >
           <img
-            :src="value"
+            :src="imageUrl"
             class="pic"
-            v-if="0"
+            v-if="imageUrl"
           />
           <div v-else>
             <el-icon><Upload /> </el-icon>
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { Upload } from '@element-plus/icons-vue';
-import { inject } from 'vue';
+import { inject, watch, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import type { UploadProps } from 'element-plus';
 
@@ -55,6 +55,25 @@ const props = defineProps({
     default: 0,
   },
 });
+
+const imageUrl = ref('');
+
+watch(
+  () => props.value,
+  async (newVal) => {
+    if (newVal) {
+      const response = await fetch(newVal);
+      const blob = await response.blob();
+      const file = new File([blob], 'image.jpg', { type: blob.type });
+      imageUrl.value = URL.createObjectURL(file);
+    } else {
+      imageUrl.value = '';
+    }
+  },
+  {
+    immediate: true,
+  },
+);
 
 const getLink = inject('getLink');
 

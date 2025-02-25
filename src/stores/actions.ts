@@ -12,6 +12,12 @@ export function setTextStatus(textProps: TextProps, text: string) {
 export function addOption(optionProps: OptionsProps) {
   if (isStringArray(optionProps.status)) {
     optionProps.status.push('新增选项');
+  } else if (isPicTitleDescStatusArray(optionProps.status)) {
+    optionProps.status.push({
+      picTitle: '新增选项图片标题',
+      picDesc: '新增选项图片描述',
+      value: '',
+    });
   }
 }
 
