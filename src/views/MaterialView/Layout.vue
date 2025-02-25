@@ -9,21 +9,53 @@
       <RouterView v-slot="{ Component }">
         <Component
           :is="Component"
-          :status="store.components[store.currentMateralComponent].status"
+          :status="store.components[store.currentMaterialComponent].status"
           :serialNum="1"
         />
       </RouterView>
     </div>
     <!-- 编辑面板 -->
-    <div class="right"></div>
+    <div class="right">
+      <EditPanel :component="currentComponent" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMaterialStore } from '@/stores/useMaterial';
-import { computed } from 'vue';
+import { provide, computed } from 'vue';
+import EditPanel from '@/components/Survey/EditPanel/Index.vue';
+import { ElMessage } from 'element-plus';
+
 const store = useMaterialStore();
-const currentComponent = computed(() => store.components[store.currentMateralComponent]);
+const currentComponent = computed(() => store.components[store.currentMaterialComponent]);
+
+const updateStatus = (configKey: string, payload?: number | string | boolean | object) => {
+  console.log('updateStatus', configKey, payload);
+  switch (configKey) {
+    case 'title':
+    case 'desc': {
+      if (typeof payload !== 'string') {
+        console.error('Invalid payload type for "title or desc".Expected string!');
+      } else {
+        store.setTextStatus(currentComponent.value.status[configKey], payload);
+      }
+    }
+    case 'options': {
+      if (typeof payload === 'number') {
+        const res = store.removeOption(currentComponent.value.status[configKey], payload);
+        if (res) {
+          ElMessage.success('删除成功');
+        } else {
+          ElMessage.error('至少保留两个选项');
+        }
+      } else {
+        store.addOption(currentComponent.value.status[configKey]);
+      }
+    }
+  }
+};
+provide('updateStatus', updateStatus);
 </script>
 
 <style scoped lang="scss">

@@ -1,7 +1,34 @@
 <template>
-  <div>edit description</div>
+  <div key="id">
+    <div class="mb-10">
+      <div class="mb-10">描述内容</div>
+      <el-input
+        placeholder="请输入描述内容"
+        v-model="text"
+        type="textarea"
+        @update:modelValue="inputHandle"
+      />
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, defineProps, inject } from 'vue';
+import type { VueComponentType } from '@/types';
 
-<style lang="scss" scoped></style>
+const props = defineProps<{
+  status: string;
+  isShow: boolean;
+  configKey: string;
+  editComponent: VueComponentType;
+  id: string;
+}>();
+
+const text = ref(props.status);
+
+const inputHandle = (val: string) => {
+  updateStatus(props.configKey, val);
+};
+
+const updateStatus = inject('updateStatus');
+</script>
