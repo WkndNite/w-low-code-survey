@@ -89,10 +89,12 @@ const tableData = ref([]);
 const router = useRouter();
 
 const goToEditor = () => {
+  localStorage.setItem('activeView', 'editor');
   router.push('/editor');
 };
 
 const goToComponentMarket = () => {
+  localStorage.setItem('activeView', 'market');
   router.push('/materials');
 };
 

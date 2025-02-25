@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, inject } from 'vue';
+import { ref, inject } from 'vue';
 import type { VueComponentType } from '@/types';
 
 const props = defineProps<{

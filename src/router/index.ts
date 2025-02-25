@@ -1,3 +1,4 @@
+import { useMaterialStore } from '@/stores/useMaterial';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -36,9 +37,9 @@ const router = createRouter({
               component: () => import('@/components/Survey/Materials/Select/OptionSelect.vue'),
             },
             {
-              path: '/pic-select',
-              name: 'pic-select',
-              component: () => import('@/components/Survey/Materials/Select/PicSelect.vue'),
+              path: '/single-pic-select',
+              name: 'single-pic-select',
+              component: () => import('@/components/Survey/Materials/Select/SinglePicSelect.vue'),
             },
             {
               path: '/multi-pic-select',
@@ -80,6 +81,15 @@ const router = createRouter({
       component: () => import('@/views/EditorView/Index.vue'),
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  // 只针对组件市场页面路由切换组件状态
+  const store = useMaterialStore();
+  if (localStorage.getItem('activeView') === 'market' && to.name) {
+    store.setCurrentMaterialComponent(to.name as string);
+  }
+  next();
 });
 
 export default router;

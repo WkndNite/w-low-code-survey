@@ -1,11 +1,24 @@
-import type { OptionsProps, TextProps } from '@/types';
+import {
+  isPicTitleDescStatusArray,
+  isStringArray,
+  type OptionsProps,
+  type TextProps,
+} from '@/types';
 
 export function getTextStatus(props: TextProps) {
   return props.status;
 }
 
 export function getStringStatus(props: OptionsProps) {
-  return props.status;
+  if (props && isStringArray(props.status)) {
+    return props.status;
+  }
+}
+
+export function getPicTitleDescStatusArr(props: OptionsProps) {
+  if (props && isPicTitleDescStatusArray(props.status)) {
+    return props.status;
+  }
 }
 
 export function getCurrentStatus(props: OptionsProps) {
@@ -13,5 +26,7 @@ export function getCurrentStatus(props: OptionsProps) {
 }
 
 export function getStringStatusByCurrentStatus(props: OptionsProps) {
-  return props.status[props.currentStatus];
+  if (props && isStringArray(props.status)) {
+    return props.status[props.currentStatus];
+  }
 }

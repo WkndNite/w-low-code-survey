@@ -26,12 +26,12 @@ import { useMaterialStore } from '@/stores/useMaterial';
 import { provide, computed } from 'vue';
 import EditPanel from '@/components/Survey/EditPanel/Index.vue';
 import { ElMessage } from 'element-plus';
+import { isPicLink, type PicLink } from '@/types';
 
 const store = useMaterialStore();
 const currentComponent = computed(() => store.components[store.currentMaterialComponent]);
 
 const updateStatus = (configKey: string, payload?: number | string | boolean | object) => {
-  console.log('updateStatus', configKey, payload);
   switch (configKey) {
     case 'title':
     case 'desc': {
@@ -40,6 +40,7 @@ const updateStatus = (configKey: string, payload?: number | string | boolean | o
       } else {
         store.setTextStatus(currentComponent.value.status[configKey], payload);
       }
+      break;
     }
     case 'options': {
       if (typeof payload === 'number') {
@@ -49,13 +50,40 @@ const updateStatus = (configKey: string, payload?: number | string | boolean | o
         } else {
           ElMessage.error('至少保留两个选项');
         }
+      } else if (typeof payload === 'object' && isPicLink(payload)) {
+        store.setPicLinkByIndex(currentComponent.value.status[configKey], payload);
       } else {
         store.addOption(currentComponent.value.status[configKey]);
       }
+      break;
+    }
+    case 'position': {
+      if (typeof payload !== 'number') {
+        console.error('Invalid payload type for "position".Expected number!');
+      } else {
+        store.setPosition(currentComponent.value.status[configKey], payload);
+      }
+      break;
+    }
+    case 'titleSize':
+    case 'descSize': {
+      if (typeof payload !== 'number') {
+        console.error('Invalid payload type for "titleSize or descSize".Expected number!');
+      } else {
+        store.setSize(currentComponent.value.status[configKey], payload);
+      }
+      break;
     }
   }
 };
+
+const getLink = (link: PicLink) => {
+  console.log(link);
+  updateStatus('options', link);
+};
+
 provide('updateStatus', updateStatus);
+provide('getLink', getLink);
 </script>
 
 <style scoped lang="scss">

@@ -47,3 +47,31 @@ export interface OptionsStatus extends BaseStatus {
 export function isStringArray(status: OptionsStatusArr): status is string[] {
   return Array.isArray(status) && status.every((item) => typeof item === 'string');
 }
+
+export function isValueStatusArray(status: OptionsStatusArr): status is ValueStatusArr {
+  return (
+    Array.isArray(status) &&
+    status.every((item) => typeof item === 'object' && 'value' in item && 'status' in item)
+  );
+}
+
+export function isPicTitleDescStatusArray(
+  status: OptionsStatusArr,
+): status is PicTitleDescStatusArr {
+  return (
+    Array.isArray(status) &&
+    status.every(
+      (item) =>
+        typeof item === 'object' && 'picTitle' in item && 'picDesc' in item && 'value' in item,
+    )
+  );
+}
+
+export type PicLink = {
+  link: string;
+  index: number;
+};
+
+export function isPicLink(obj: object): obj is PicLink {
+  return 'link' in obj && 'index' in obj;
+}

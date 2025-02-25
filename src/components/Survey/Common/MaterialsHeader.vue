@@ -30,31 +30,51 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
-  serialNum: number;
-  title?: string;
-  desc?: string;
-  titleSize?: string;
-  descSize?: string;
-  titleWeight?: number;
-  descWeight?: number;
-  titleItalic?: number;
-  descItalic?: number;
-  titleColor?: string;
-  descColor?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  title: '',
-  desc: '',
-  titleSize: '22',
-  descSize: '16',
-  titleWeight: 0,
-  descWeight: 0,
-  titleItalic: 0,
-  descItalic: 0,
-  titleColor: '#000',
-  descColor: '#909399',
+const props = defineProps({
+  serialNum: {
+    type: Number,
+    required: true,
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+  desc: {
+    type: String,
+    default: '',
+  },
+  titleSize: {
+    type: String,
+    default: '22',
+  },
+  descSize: {
+    type: String,
+    default: '16',
+  },
+  titleWeight: {
+    type: Number,
+    default: 0,
+  },
+  descWeight: {
+    type: Number,
+    default: 0,
+  },
+  titleItalic: {
+    type: Number,
+    default: 0,
+  },
+  descItalic: {
+    type: Number,
+    default: 0,
+  },
+  titleColor: {
+    type: String,
+    default: '#000',
+  },
+  descColor: {
+    type: String,
+    default: '#909399',
+  },
 });
 </script>
 

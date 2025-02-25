@@ -17,30 +17,40 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-    <div class="radio-group">
-      <el-radio-group>
-        <el-radio
-          v-for="(item, index) in computedStatus.options"
+  </div>
+  <div class="flex wrap">
+    <el-radio-group
+      v-model="radioValue"
+      class="flex wrap"
+    >
+      <el-radio
+        v-for="(item, index) in computedStatus.options"
+        :key="index"
+        :value="item.picTitle"
+        class="picOption flex mb-15"
+      >
+        <PicOption
           :key="index"
-          :value="item"
-        >
-          {{ item }}
-        </el-radio>
-      </el-radio-group>
-    </div>
+          v-bind="{ ...item, index }"
+        />
+      </el-radio>
+    </el-radio-group>
   </div>
 </template>
 
 <script setup lang="ts">
 import MaterialsHeader from '@/components/Survey/Common/MaterialsHeader.vue';
+import PicOption from '@/components/Survey/Common/PicOption.vue';
 import type { OptionsStatus } from '@/types/editProps';
 import {
   getCurrentStatus,
-  getStringStatus,
+  getPicTitleDescStatusArr,
   getStringStatusByCurrentStatus,
   getTextStatus,
 } from '@/utils';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+
+const radioValue = ref('');
 
 const props = defineProps<{
   serialNum: number;
@@ -50,7 +60,7 @@ const props = defineProps<{
 const computedStatus = computed(() => ({
   title: getTextStatus(props.status.title),
   desc: getTextStatus(props.status.desc),
-  options: getStringStatus(props.status.options),
+  options: getPicTitleDescStatusArr(props.status.options),
   position: getCurrentStatus(props.status.position),
   titleSize: getStringStatusByCurrentStatus(props.status.titleSize),
   descSize: getStringStatusByCurrentStatus(props.status.descSize),
@@ -63,4 +73,9 @@ const computedStatus = computed(() => ({
 }));
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.picOption {
+  height: auto;
+  flex-direction: column-reverse;
+}
+</style>

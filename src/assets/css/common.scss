@@ -86,8 +86,8 @@
 }
 
 .select {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
 }
 
 .pointer {

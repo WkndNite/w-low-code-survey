@@ -2,11 +2,19 @@
   <div>
     <div class="container flex self-start align-items-center border-box">
       <div class="left flex justify-content-center align-items-center">
-        <el-button :icon="ArrowLeft" circle size="small" @click="goHome" />
+        <el-button
+          :icon="ArrowLeft"
+          circle
+          size="small"
+          @click="goHome"
+        />
       </div>
       <div class="center flex align-items-center space-between pl-15 pr-15"></div>
       <div class="right flex justify-content-center align-items-center">
-        <el-avatar :size="30" :src="avatar" />
+        <el-avatar
+          :size="30"
+          :src="avatar"
+        />
       </div>
     </div>
   </div>
@@ -20,6 +28,7 @@ import { ref } from 'vue';
 const router = useRouter();
 
 const goHome = () => {
+  localStorage.setItem('activeView', 'home');
   router.push('/');
 };
 
