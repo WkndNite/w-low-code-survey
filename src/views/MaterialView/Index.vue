@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header :isEditor="false" />
   <h1 class="font-weight-100 text-center m0 p0">物料市场</h1>
   <div class="container mc flex">
     <nav class="category mc">

@@ -1,4 +1,11 @@
-import type { OptionsProps, PicLink, TextProps, TypeStatus, componentStatus } from '@/types';
+import type {
+  OptionsProps,
+  PicLink,
+  TextProps,
+  TypeStatus,
+  VueComponentType,
+  componentStatus,
+} from '@/types';
 
 export type SurveyComponentName =
   | 'single-select'
@@ -8,6 +15,24 @@ export type SurveyComponentName =
 
 // 业务的物料 包括问题类型和非问题类型
 export type Material = SurveyComponentName | 'text-note';
+
+export type EditComponentName =
+  | 'title-edit'
+  | 'desc-edit'
+  | 'position-edit'
+  | 'size-edit'
+  | 'italic-edit'
+  | 'color-edit'
+  | 'weight-edit'
+  | 'text-type-edit'
+  | 'options-edit'
+  | 'pic-options-edit';
+
+export type ComponentName = Material | EditComponentName;
+
+export type ComponentMap = {
+  [key in ComponentName]: VueComponentType;
+};
 
 export interface Actions {
   setTextStatus: (textProps: TextProps, text: string) => void;

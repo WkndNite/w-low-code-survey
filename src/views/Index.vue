@@ -23,7 +23,7 @@
     >
       <el-table-column
         fixed
-        prop="createDate"
+        prop="createdAt"
         label="创建日期"
         width="150"
         :formatter="formatDate"
@@ -32,16 +32,15 @@
       <el-table-column
         prop="title"
         label="问卷标题"
-        align="center"
       />
       <el-table-column
-        prop="surveyCount"
+        prop="questionsCount"
         label="题目数量"
         width="150"
         align="center"
       />
       <el-table-column
-        prop="updateDate"
+        prop="updatedAt"
         label="最近更新日期"
         width="150"
         align="center"
@@ -81,12 +80,21 @@
 </template>
 
 <script setup lang="ts">
+import { getAllQuestionnaires } from '@/db/operation';
+import type { QuestionnaireDatabaseData, QuestionnaireTableRow } from '@/types';
 import { Compass, Plus } from '@element-plus/icons-vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-const tableData = ref([]);
+import { formatDate } from '@/utils/index';
 
+const tableData = ref<QuestionnaireDatabaseData[]>([]);
 const router = useRouter();
+function getData() {
+  getAllQuestionnaires().then((res) => {
+    tableData.value = res;
+  });
+}
+getData();
 
 const goToEditor = () => {
   localStorage.setItem('activeView', 'editor');
@@ -98,12 +106,14 @@ const goToComponentMarket = () => {
   router.push('/materials');
 };
 
-const formatDate = () => {};
-const deleteSurvey = (item) => {
-  console.log(item);
-};
-const viewSurvey = (item) => {
-  console.log(item);
+const deleteSurvey = (item) => {};
+const viewSurvey = (item: QuestionnaireTableRow) => {
+  router.push({
+    path: `/preview/${item.id}`,
+    state: {
+      from: 'home',
+    },
+  });
 };
 const editSurvey = (item) => {
   console.log(item);

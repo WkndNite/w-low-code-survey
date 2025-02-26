@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <Header />
+      <Header :isEditor="true" />
     </div>
     <div class="container">
       <LeftSide />

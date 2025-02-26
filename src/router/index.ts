@@ -1,3 +1,5 @@
+import HomeView from '@/views/Index.vue';
+
 import { useMaterialStore } from '@/stores/useMaterial';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -7,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/Index.vue'),
+      component: HomeView,
     },
     {
       path: '/materials',
@@ -112,6 +114,11 @@ const router = createRouter({
           component: () => import('@/views/EditorView/LeftSide/Outline.vue'),
         },
       ],
+    },
+    {
+      path: '/preview/:id(\\d+)',
+      name: 'preview',
+      component: () => import('@/views/Preview.vue'),
     },
   ],
 });

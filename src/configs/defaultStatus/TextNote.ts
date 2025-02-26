@@ -17,7 +17,7 @@ import TextTypeEdit from '@/components/Survey/EditPanel/TextTypeEdit.vue';
 export default function () {
   return {
     type: markRaw(Note),
-    name: 'note',
+    name: 'text-note',
     id: uuidv4(),
     status: {
       type: {
