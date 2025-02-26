@@ -18,9 +18,6 @@ import Header from '@/components/Common/Header.vue';
 import LeftSide from './LeftSide/Index.vue';
 import RightSide from './RightSide.vue';
 import Center from './Center.vue';
-import { useEditorStore } from '@/stores/useEditor';
-
-const store = useEditorStore();
 </script>
 
 <style scoped>

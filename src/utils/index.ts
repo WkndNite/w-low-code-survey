@@ -41,14 +41,14 @@ export function updateInitStatusBeforeAdd(newStatus: componentStatus, newMateria
   switch (newMaterialName) {
     case 'personal-info-gender':
       newStatus.name = 'personal-info-gender';
-      // newStatus.status.title.status = '您的性别是？';
+      newStatus.status.title.status = '您的性别是？';
       if (isOptionsStatus(newStatus.status)) {
         newStatus.status.options.status = genderOptions();
       }
       return newStatus;
     case 'personal-info-education':
       newStatus.name = 'personal-info-education';
-      newStatus.status.title.status = '到目前为止您的最高学历是？';
+      newStatus.status.title.status = '到目前为止,您的最高学历是？';
       if (isOptionsStatus(newStatus.status)) {
         newStatus.status.options.status = educationOptions();
       }

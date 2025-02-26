@@ -15,7 +15,7 @@ export const useEditorStore = defineStore('editorStore', {
   state: () => ({
     currentFocusedComponentIndex: -1, // 当前选中的组件索引
     questionsCount: 0, // 问卷题目的数量
-    components: [], // 问卷题目的数组
+    components: [] as componentStatus[], // 问卷题目的数组
   }),
   actions: {
     setTextStatus,
@@ -31,6 +31,15 @@ export const useEditorStore = defineStore('editorStore', {
       if (isQuestionsComponent(newComponent.name)) {
         this.questionsCount++;
       }
+    },
+    setCurrentFocusedComponentIndex(index: number) {
+      this.currentFocusedComponentIndex = index;
+    },
+    removeComponent(index: number) {
+      if (isQuestionsComponent(this.components[index].name)) {
+        this.questionsCount--;
+      }
+      this.components.splice(index, 1);
     },
   },
 });

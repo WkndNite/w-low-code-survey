@@ -12,6 +12,7 @@ import { defaultStatusMap } from '@/configs/defaultStatus/defaultStatusMap';
 import type { componentStatus, Material } from '@/types';
 import { updateInitStatusBeforeAdd } from '@/utils';
 import { useEditorStore } from '@/stores/useEditor';
+import EventBus from '@/utils/eventBus';
 
 const props = defineProps(['item']);
 const store = useEditorStore();
@@ -29,9 +30,8 @@ const addComponent = () => {
 
   updateInitStatusBeforeAdd(targetComponentMaterialStatus, targetComponentMaterialName);
 
-  console.clear();
-  console.log('🚀 ~ addComponent ~ targetComponentMaterialStatus:', targetComponentMaterialStatus);
   store.addComponent(targetComponentMaterialStatus);
+  EventBus.emit('scrollToBottom' as never);
 };
 </script>
 

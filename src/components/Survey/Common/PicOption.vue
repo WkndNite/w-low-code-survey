@@ -76,7 +76,7 @@ watch(
   },
 );
 
-const getLink = inject<GetLink>('getLink');
+const getLink = inject<GetLink>('getLink', () => {});
 
 const successHandle: UploadProps['onSuccess'] = async (response) => {
   if (getLink) {
