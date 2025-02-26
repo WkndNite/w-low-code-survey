@@ -3,34 +3,34 @@
     <h2
       class="title font-weight-100"
       :style="{
-        fontSize: `${props.titleSize}px`,
-        color: props.titleColor,
+        fontSize: `${titleSize}px`,
+        color: titleColor,
       }"
     >
-      <span class="mr-10">{{ props.serialNum }}</span>
+      <span class="mr-10">{{ serialNum }}</span>
       <span
         :class="{
-          'font-bold': !props.titleWeight,
-          'font-italic': !props.titleItalic,
+          'font-bold': !titleWeight,
+          'font-italic': !titleItalic,
         }"
-        >{{ props.title }}</span
+        >{{ title }}</span
       >
     </h2>
     <div
       class="desc"
       :class="{
-        'font-bold': !props.descWeight,
-        'font-italic': !props.descItalic,
+        'font-bold': !descWeight,
+        'font-italic': !descItalic,
       }"
-      :style="{ fontSize: `${props.descSize}px`, color: props.descColor }"
+      :style="{ fontSize: `${descSize}px`, color: descColor }"
     >
-      {{ props.desc }}
+      {{ desc }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   serialNum: {
     type: Number,
     required: true,

@@ -91,7 +91,6 @@ const removeOption = (index: number) => {
 };
 
 const deletePic = (index: number) => {
-  console.log('deletePic', index);
   ElMessageBox.confirm('确定删除图片吗？', '警告', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',

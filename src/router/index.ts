@@ -75,6 +75,19 @@ const router = createRouter({
           path: '/profile-group',
           name: 'profile-group',
           component: () => import('@/views/MaterialView/ProfileGroupView.vue'),
+          redirect: '/personal-info-gender',
+          children: [
+            {
+              path: '/personal-info-gender',
+              name: 'personal-info-gender',
+              component: () => import('@/components/Survey/Materials/Select/SingleSelect.vue'),
+            },
+            {
+              path: '/personal-info-education',
+              name: 'personal-info-education',
+              component: () => import('@/components/Survey/Materials/Select/SingleSelect.vue'),
+            },
+          ],
         },
         {
           path: '/contact-group',
@@ -87,6 +100,18 @@ const router = createRouter({
       path: '/editor',
       name: 'editor',
       component: () => import('@/views/EditorView/Index.vue'),
+      children: [
+        {
+          path: 'survey-type',
+          name: 'survey-type',
+          component: () => import('@/views/EditorView/LeftSide/SurveyType.vue'),
+        },
+        {
+          path: 'outline',
+          name: 'outline',
+          component: () => import('@/views/EditorView/LeftSide/Outline.vue'),
+        },
+      ],
     },
   ],
 });

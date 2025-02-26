@@ -8,4 +8,6 @@ export const defaultStatusMap = {
   'single-select': SingleSelectDefaultStatus,
   'single-pic-select': SinglePicSelect,
   'text-note': TextNote,
+  'personal-info-gender': SingleSelectDefaultStatus,
+  'personal-info-education': SingleSelectDefaultStatus,
 };

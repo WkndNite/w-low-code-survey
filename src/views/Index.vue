@@ -12,7 +12,7 @@
         type="success"
         :icon="Compass"
         @click="goToComponentMarket"
-        >组件市场</el-button
+        >物料市场</el-button
       >
     </div>
     <!-- 数据表格 -->
@@ -90,7 +90,7 @@ const router = useRouter();
 
 const goToEditor = () => {
   localStorage.setItem('activeView', 'editor');
-  router.push('/editor');
+  router.push('/editor/survey-type');
 };
 
 const goToComponentMarket = () => {

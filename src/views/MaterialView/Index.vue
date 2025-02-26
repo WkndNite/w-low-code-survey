@@ -1,37 +1,55 @@
 <template>
   <Header />
-  <h1 class="font-weight-100 text-center m0 p0">组件市场</h1>
+  <h1 class="font-weight-100 text-center m0 p0">物料市场</h1>
   <div class="container mc flex">
     <nav class="category mc">
-      <Router-link class="category-item" to="/select-group">
+      <Router-link
+        class="category-item"
+        to="/select-group"
+      >
         <el-icon>
           <CircleCheck />
         </el-icon>
         <div>选择</div>
       </Router-link>
-      <Router-link class="category-item" to="/input-group">
+      <Router-link
+        class="category-item"
+        to="/input-group"
+      >
         <el-icon> <EditPen /> </el-icon>
         <div>文本输入</div>
       </Router-link>
-      <Router-link class="category-item" to="/advanced-group">
+      <Router-link
+        class="category-item"
+        to="/advanced-group"
+      >
         <el-icon>
           <Files />
         </el-icon>
         <div>高级题型</div>
       </Router-link>
-      <Router-link class="category-item" to="/note-group">
+      <Router-link
+        class="category-item"
+        to="/note-group"
+      >
         <el-icon>
           <ChatLineSquare />
         </el-icon>
         <div>备注说明</div>
       </Router-link>
-      <Router-link class="category-item" to="/profile-group">
+      <Router-link
+        class="category-item"
+        to="/profile-group"
+      >
         <el-icon>
           <User />
         </el-icon>
         <div>个人信息</div>
       </Router-link>
-      <Router-link class="category-item" to="/contact-group">
+      <Router-link
+        class="category-item"
+        to="/contact-group"
+      >
         <el-icon>
           <Message />
         </el-icon>
@@ -45,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import Header from '@/components/Commmon/Header.vue';
+import Header from '@/components/Common/Header.vue';
 import {
   CircleCheck,
   Files,
